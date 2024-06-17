@@ -17,7 +17,7 @@ body {
 }
 
 :root {
-  --background1: rgb(255, 255, 255);
+  --background1: rgb(105, 112, 175);
   --background2: rgb(255, 255, 255);
   --text1: rgb(0, 0, 0);
   --text2: rgb(0, 0, 0);
@@ -25,30 +25,26 @@ body {
   /* font-size: 16px; */ /* Disables browser font size setting */
 }
 
-:root.light {
-  --background1: rgb(255, 255, 255);
-  --background2: rgb(255, 255, 255);
-  --text1: rgb(0, 0, 0);
-  --text2: rgb(0, 0, 0);
-  --text-footer: rgb(0, 0, 0);
-  /* font-size: 16px; */
-}
-
-:root.dark {
-  --background1: rgb(0, 0, 0);
-  --background2: rgb(0, 0, 0);
-  --text1: rgb(255, 255, 255);
-  --text2: rgb(255, 255, 255);
-  --text-footer: rgb(255, 255, 255);
-  /* font-size: 16px; */
-}
-
-/* body {
+body {
   display: grid;
-  grid-template: 1fr / 1fr;
-} */
+  grid-template: 1fr 2fr 2fr 40px / 1fr;
+}
+
+#content1 {
+  grid-row: 1 / 2;
+}
+
+#content2 {
+  grid-row: 2 / 3;
+}
+
+#content3 {
+  grid-row: 3 / 4;
+}
 
 footer {
+  grid-row: 4 /5;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,9 +52,4 @@ footer {
   height: 40px;
   font-size: 1rem;
   color: var(--text-footer);
-
-  /* position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0; */
 }
