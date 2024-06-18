@@ -11,21 +11,86 @@
 <body>
   <header></header>
 
-  <div id="content1">
-    <input id="input" type="text" placeholder="City name">
-    <button id="search" type="button">Search</button>
-  </div>
-  <div id="content2">
-    <p id="test"></p>
-  </div>
-  <div id="content3">
-    <div id="day0">
-      <img id="imgtest" src="" alt="">
-      <p id="test1"></p>
-      <p id="test2"></p>
+  
+  <div id="weather1">
+    <div class="container">
+      <p id="location"></p>
+      <p id="current-temp"></p>
+      <p id="condition"></p>
+      <img id="condition-img" src="" alt="">
+      <p id="high-low"></p>
     </div>
-    <div id="day1"></div>
-    <div id="day2"></div>
+  </div>
+
+  <div id="search-box">
+    <div class="wrapper">
+      <input id="input" type="text" placeholder="City name">
+      <button id="search" type="button">Search</button>
+    </div>
+  </div>
+
+  <div id="weather2">
+    <div class="container2">
+      <div id="time-container">
+        <p id="local-time"></p>
+        <hr>
+      </div>
+      <div id="humidity-container">
+        <p class="weather2-property-name">Humidity</p>
+        <p id="humidity"></p>
+      </div>
+      <div id="wind-container">
+        <p class="weather2-property-name">Wind</p>
+        <p id="wind"></p>
+      </div>
+      <div id="uv-container">
+        <p class="weather2-property-name">UV</p>
+        <p id="uv"></p>
+      </div>
+      <div id="feels-like-container">
+        <p class="weather2-property-name">Feels like</p>
+        <p id="feels-like"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="forecast-3day">
+    <div class="container">
+      <p class="heading">3 day forecast</p>
+      <hr>
+      <div id="day0">
+        <p>Today</p>
+        <div class="forecast-3day-right">
+          <img id="weather-img-0" src="" alt="">
+          <p id="max-temp-0"></p>
+          <p id="min-temp-0"></p>
+        </div>
+      </div>
+      <div id="day1">
+        <p>Tomorrow</p>
+        <div class="forecast-3day-right">
+          <img id="weather-img-1" src="" alt="">
+          <p id="max-temp-1"></p>
+          <p id="min-temp-1"></p>
+        </div>
+      </div>
+      <div id="day2">
+        <p>Day 3</p>
+        <div class="forecast-3day-right">
+          <img id="weather-img-2" src="" alt="">
+          <p id="max-temp-2"></p>
+          <p id="min-temp-2"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="forecast-hourly">
+    <div class="container">
+      <p class="heading">Hourly forecast</p>
+      <hr>
+      <div id="hours-container"></div>
+    </div>
   </div>
 
   <footer>
