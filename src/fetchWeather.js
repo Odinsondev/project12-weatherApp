@@ -19,47 +19,101 @@ function runFetchForecast(city) {
       console.log(response);
 
       const weatherData = {};
-      weatherData.city = response.location.name;
-      weatherData.country = response.location.country;
-      weatherData.time = response.location.localtime;
-      weatherData.conditionToday =
-        response.forecast.forecastday[0].day.condition.text;
-      weatherData.temperatureCelsius = response.current.temp_c;
-      weatherData.temperatureFahrenheit = response.current.temp_f;
-      weatherData.humidity = response.current.humidity;
-      weatherData.windKph = response.current.wind_kph;
-      weatherData.windMph = response.current.wind_mph;
-      weatherData.uvIndex = response.current.uv;
-      weatherData.forecast0condition =
+      weatherData.today = {};
+      weatherData.today.city = response.location.name;
+      weatherData.today.country = response.location.country;
+      weatherData.today.time = response.location.localtime;
+      weatherData.today.condition = response.current.condition.text;
+      weatherData.today.conditionImg = response.current.condition.icon;
+      weatherData.today.temperatureCelsius = response.current.temp_c;
+      weatherData.today.temperatureFahrenheit = response.current.temp_f;
+      weatherData.today.humidity = response.current.humidity;
+      weatherData.today.windKph = response.current.wind_kph;
+      weatherData.today.windMph = response.current.wind_mph;
+      weatherData.today.uvIndex = response.current.uv;
+      weatherData.today.feelsLikeC = response.current.feelslike_c;
+      weatherData.today.feelsLikeF = response.current.feelslike_f;
+      weatherData.dailyForecast = {};
+      weatherData.dailyForecast.forecast0condition =
         response.forecast.forecastday[0].day.condition.icon;
-      weatherData.forecast0maxC =
+      weatherData.dailyForecast.forecast0maxC =
         response.forecast.forecastday[0].day.maxtemp_c;
-      weatherData.forecast0maxF =
+      weatherData.dailyForecast.forecast0maxF =
         response.forecast.forecastday[0].day.maxtemp_f;
-      weatherData.forecast0minC =
+      weatherData.dailyForecast.forecast0minC =
         response.forecast.forecastday[0].day.mintemp_c;
-      weatherData.forecast0minF =
+      weatherData.dailyForecast.forecast0minF =
         response.forecast.forecastday[0].day.mintemp_f;
-      weatherData.forecast1condition =
+      weatherData.dailyForecast.forecast1condition =
         response.forecast.forecastday[1].day.condition.icon;
-      weatherData.forecast1maxC =
+      weatherData.dailyForecast.forecast1maxC =
         response.forecast.forecastday[1].day.maxtemp_c;
-      weatherData.forecast1maxF =
+      weatherData.dailyForecast.forecast1maxF =
         response.forecast.forecastday[1].day.maxtemp_f;
-      weatherData.forecast1minC =
+      weatherData.dailyForecast.forecast1minC =
         response.forecast.forecastday[1].day.mintemp_c;
-      weatherData.forecast1minF =
+      weatherData.dailyForecast.forecast1minF =
         response.forecast.forecastday[1].day.mintemp_f;
-      weatherData.forecast2condition =
+      weatherData.dailyForecast.forecast2condition =
         response.forecast.forecastday[2].day.condition.icon;
-      weatherData.forecast2maxC =
+      weatherData.dailyForecast.forecast2maxC =
         response.forecast.forecastday[2].day.maxtemp_c;
-      weatherData.forecast2maxF =
+      weatherData.dailyForecast.forecast2maxF =
         response.forecast.forecastday[2].day.maxtemp_f;
-      weatherData.forecast2minC =
+      weatherData.dailyForecast.forecast2minC =
         response.forecast.forecastday[2].day.mintemp_c;
-      weatherData.forecast2minF =
+      weatherData.dailyForecast.forecast2minF =
         response.forecast.forecastday[2].day.mintemp_f;
+      weatherData.hourlyForecastC = [];
+      weatherData.hourlyForecastC[0] =
+        response.forecast.forecastday[0].hour[0].temp_c;
+      weatherData.hourlyForecastC[1] =
+        response.forecast.forecastday[0].hour[2].temp_c;
+      weatherData.hourlyForecastC[2] =
+        response.forecast.forecastday[0].hour[4].temp_c;
+      weatherData.hourlyForecastC[3] =
+        response.forecast.forecastday[0].hour[6].temp_c;
+      weatherData.hourlyForecastC[4] =
+        response.forecast.forecastday[0].hour[8].temp_c;
+      weatherData.hourlyForecastC[5] =
+        response.forecast.forecastday[0].hour[10].temp_c;
+      weatherData.hourlyForecastC[6] =
+        response.forecast.forecastday[0].hour[12].temp_c;
+      weatherData.hourlyForecastC[7] =
+        response.forecast.forecastday[0].hour[14].temp_c;
+      weatherData.hourlyForecastC[8] =
+        response.forecast.forecastday[0].hour[16].temp_c;
+      weatherData.hourlyForecastC[9] =
+        response.forecast.forecastday[0].hour[18].temp_c;
+      weatherData.hourlyForecastC[10] =
+        response.forecast.forecastday[0].hour[20].temp_c;
+      weatherData.hourlyForecastC[11] =
+        response.forecast.forecastday[0].hour[22].temp_c;
+      weatherData.hourlyForecastImg = [];
+      weatherData.hourlyForecastImg[0] =
+        response.forecast.forecastday[0].hour[0].condition.icon;
+      weatherData.hourlyForecastImg[1] =
+        response.forecast.forecastday[0].hour[2].condition.icon;
+      weatherData.hourlyForecastImg[2] =
+        response.forecast.forecastday[0].hour[4].condition.icon;
+      weatherData.hourlyForecastImg[3] =
+        response.forecast.forecastday[0].hour[6].condition.icon;
+      weatherData.hourlyForecastImg[4] =
+        response.forecast.forecastday[0].hour[8].condition.icon;
+      weatherData.hourlyForecastImg[5] =
+        response.forecast.forecastday[0].hour[10].condition.icon;
+      weatherData.hourlyForecastImg[6] =
+        response.forecast.forecastday[0].hour[12].condition.icon;
+      weatherData.hourlyForecastImg[7] =
+        response.forecast.forecastday[0].hour[14].condition.icon;
+      weatherData.hourlyForecastImg[8] =
+        response.forecast.forecastday[0].hour[16].condition.icon;
+      weatherData.hourlyForecastImg[9] =
+        response.forecast.forecastday[0].hour[18].condition.icon;
+      weatherData.hourlyForecastImg[10] =
+        response.forecast.forecastday[0].hour[20].condition.icon;
+      weatherData.hourlyForecastImg[11] =
+        response.forecast.forecastday[0].hour[22].condition.icon;
 
       console.log(weatherData);
 

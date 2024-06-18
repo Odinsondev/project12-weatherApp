@@ -27,3 +27,12 @@ function changeCityName() {
     input.value = '';
   }
 }
+
+runFetchForecast('Vancouver');
+
+//improvements:
+//<!-- Photo by Marek Piwnicki on Unsplash -->
+//3day forecast date
+//dark theme
+//imperial system
+//weather1 margin-top
