@@ -1,17 +1,23 @@
 export { editTime };
 
-//cache DOM
-
-//bind events
-
 //functions
 function editTime(data) {
-  const time = data.today.time;
-  const year = time.slice(0, 4);
-  const month = time.slice(5, 7);
-  const day = time.slice(8, 10);
-  const clock = time.slice(11);
+  const currentTime = data.today.time;
+  const year = currentTime.slice(0, 4);
+  const month = currentTime.slice(5, 7);
+  const day = currentTime.slice(8, 10);
+  const clock = currentTime.slice(11);
   const newTime = clock + ' ' + day + '.' + month + '.' + year;
 
-  return newTime;
+  const dateInThreeDays = data.dailyForecast.forecast2date;
+  const year2 = dateInThreeDays.slice(0, 4);
+  const month2 = dateInThreeDays.slice(5, 7);
+  const day2 = dateInThreeDays.slice(8, 10);
+  const newTime2 = day2 + '.' + month2 + '.' + year2;
+
+  const newTimeObject = {};
+  newTimeObject.newCurrentTime = newTime;
+  newTimeObject.newDateInThreeDays = newTime2;
+
+  return newTimeObject;
 }

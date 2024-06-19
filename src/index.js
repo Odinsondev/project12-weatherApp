@@ -1,38 +1,42 @@
 import './normalize.css';
 import './style.css';
-//import other stylesheets
 
 import { runFetchForecast } from './fetchWeather';
-
-/* import pictureName from './imagedDirectory/imageName'; */
-
-//initialize
+import { changeTheme } from './changeTheme';
 
 //cache DOM
-let cityName = '';
+let cityName = 'Vancouver';
+let units = 'Celsius';
 
 const input = document.getElementById('input');
 const searchButton = document.getElementById('search');
+const unitToggleButton = document.getElementById('unit-toggle');
+const changeThemeButton = document.getElementById('theme');
 
 //bind events
 searchButton.addEventListener('click', changeCityName);
+unitToggleButton.addEventListener('click', changeUnits);
+changeThemeButton.addEventListener('click', changeTheme);
 
 //functions
 function changeCityName() {
   if (input.value === '') {
-    runFetchForecast('Vancouver');
+    runFetchForecast(cityName, units);
   } else {
     cityName = input.value;
-    runFetchForecast(cityName);
+    runFetchForecast(cityName, units);
     input.value = '';
   }
 }
 
-runFetchForecast('Vancouver');
+function changeUnits() {
+  if (units === 'Celsius') {
+    units = 'Fahrenheit';
+    runFetchForecast(cityName, units);
+  } else if (units === 'Fahrenheit') {
+    units = 'Celsius';
+    runFetchForecast(cityName, units);
+  }
+}
 
-//improvements:
-//<!-- Photo by Marek Piwnicki on Unsplash -->
-//3day forecast date
-//dark theme
-//imperial system
-//weather1 margin-top
+runFetchForecast('Vancouver', units);

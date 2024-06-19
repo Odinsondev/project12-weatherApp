@@ -1,13 +1,10 @@
 export { runFetchForecast };
 
-import { render } from './renderPage';
-
-//cache DOM
-
-//bind events
+import { renderCelsius } from './renderPageC';
+import { renderFahrenheit } from './renderPageF';
 
 //functions
-function runFetchForecast(city) {
+function runFetchForecast(city, units) {
   fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=274242f3ac294cf0a8d22912240906&q=${city}&days=3`,
     { mode: 'cors' }
@@ -29,7 +26,6 @@ function runFetchForecast(city) {
       weatherData.today.temperatureFahrenheit = response.current.temp_f;
       weatherData.today.humidity = response.current.humidity;
       weatherData.today.windKph = response.current.wind_kph;
-      weatherData.today.windMph = response.current.wind_mph;
       weatherData.today.uvIndex = response.current.uv;
       weatherData.today.feelsLikeC = response.current.feelslike_c;
       weatherData.today.feelsLikeF = response.current.feelslike_f;
@@ -54,6 +50,8 @@ function runFetchForecast(city) {
         response.forecast.forecastday[1].day.mintemp_c;
       weatherData.dailyForecast.forecast1minF =
         response.forecast.forecastday[1].day.mintemp_f;
+      weatherData.dailyForecast.forecast2date =
+        response.forecast.forecastday[2].date;
       weatherData.dailyForecast.forecast2condition =
         response.forecast.forecastday[2].day.condition.icon;
       weatherData.dailyForecast.forecast2maxC =
@@ -89,6 +87,31 @@ function runFetchForecast(city) {
         response.forecast.forecastday[0].hour[20].temp_c;
       weatherData.hourlyForecastC[11] =
         response.forecast.forecastday[0].hour[22].temp_c;
+      weatherData.hourlyForecastF = [];
+      weatherData.hourlyForecastF[0] =
+        response.forecast.forecastday[0].hour[0].temp_f;
+      weatherData.hourlyForecastF[1] =
+        response.forecast.forecastday[0].hour[2].temp_f;
+      weatherData.hourlyForecastF[2] =
+        response.forecast.forecastday[0].hour[4].temp_f;
+      weatherData.hourlyForecastF[3] =
+        response.forecast.forecastday[0].hour[6].temp_f;
+      weatherData.hourlyForecastF[4] =
+        response.forecast.forecastday[0].hour[8].temp_f;
+      weatherData.hourlyForecastF[5] =
+        response.forecast.forecastday[0].hour[10].temp_f;
+      weatherData.hourlyForecastF[6] =
+        response.forecast.forecastday[0].hour[12].temp_f;
+      weatherData.hourlyForecastF[7] =
+        response.forecast.forecastday[0].hour[14].temp_f;
+      weatherData.hourlyForecastF[8] =
+        response.forecast.forecastday[0].hour[16].temp_f;
+      weatherData.hourlyForecastF[9] =
+        response.forecast.forecastday[0].hour[18].temp_f;
+      weatherData.hourlyForecastF[10] =
+        response.forecast.forecastday[0].hour[20].temp_f;
+      weatherData.hourlyForecastF[11] =
+        response.forecast.forecastday[0].hour[22].temp_f;
       weatherData.hourlyForecastImg = [];
       weatherData.hourlyForecastImg[0] =
         response.forecast.forecastday[0].hour[0].condition.icon;
@@ -117,7 +140,11 @@ function runFetchForecast(city) {
 
       console.log(weatherData);
 
-      render(weatherData);
+      if (units === 'Celsius') {
+        renderCelsius(weatherData);
+      } else if (units === 'Fahrenheit') {
+        renderFahrenheit(weatherData);
+      }
     })
     .catch(function (error) {
       console.log('Error: ' + error);

@@ -11,6 +11,14 @@
 <body>
   <header></header>
 
+  <div id="button-container">
+    <div class="button-wrapper">
+      <button id="unit-toggle" type="button">Celsius/Fahrenheit</button>
+    </div>
+    <div class="button-wrapper">
+      <button id="theme" type="button">Light/Dark</button>
+    </div>
+  </div>
   
   <div id="weather1">
     <div class="container">
@@ -23,7 +31,7 @@
   </div>
 
   <div id="search-box">
-    <div class="wrapper">
+    <div class="search-wrapper">
       <input id="input" type="text" placeholder="City name">
       <button id="search" type="button">Search</button>
     </div>
@@ -75,7 +83,7 @@
         </div>
       </div>
       <div id="day2">
-        <p>Day 3</p>
+        <p id="day-three-date">Day 3</p>
         <div class="forecast-3day-right">
           <img id="weather-img-2" src="" alt="">
           <p id="max-temp-2"></p>
@@ -87,10 +95,14 @@
 
   <div id="forecast-hourly">
     <div class="container">
-      <p class="heading">Hourly forecast</p>
+      <p class="heading">Today's hourly forecast</p>
       <hr>
       <div id="hours-container"></div>
     </div>
+  </div>
+
+  <div id="photo-reference">
+    <p>Photo by Marek Piwnicki on Unsplash</p>
   </div>
 
   <footer>
