@@ -150,3 +150,146 @@ function runFetchForecast(city, units) {
       console.log('Error: ' + error);
     });
 }
+
+//rewrote function with async/await for practice
+async function runFetchForecast2(city, units) {
+  try {
+    const response = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=274242f3ac294cf0a8d22912240906&q=${city}&days=3`,
+      { mode: 'cors' }
+    );
+    const data = await response.json();
+    console.log(data);
+    const weatherData = {};
+    weatherData.today = {};
+    weatherData.today.city = data.location.name;
+    weatherData.today.country = data.location.country;
+    weatherData.today.time = data.location.localtime;
+    weatherData.today.condition = data.current.condition.text;
+    weatherData.today.conditionImg = data.current.condition.icon;
+    weatherData.today.temperatureCelsius = data.current.temp_c;
+    weatherData.today.temperatureFahrenheit = data.current.temp_f;
+    weatherData.today.humidity = data.current.humidity;
+    weatherData.today.windKph = data.current.wind_kph;
+    weatherData.today.uvIndex = data.current.uv;
+    weatherData.today.feelsLikeC = data.current.feelslike_c;
+    weatherData.today.feelsLikeF = data.current.feelslike_f;
+    weatherData.dailyForecast = {};
+    weatherData.dailyForecast.forecast0condition =
+      data.forecast.forecastday[0].day.condition.icon;
+    weatherData.dailyForecast.forecast0maxC =
+      data.forecast.forecastday[0].day.maxtemp_c;
+    weatherData.dailyForecast.forecast0maxF =
+      data.forecast.forecastday[0].day.maxtemp_f;
+    weatherData.dailyForecast.forecast0minC =
+      data.forecast.forecastday[0].day.mintemp_c;
+    weatherData.dailyForecast.forecast0minF =
+      data.forecast.forecastday[0].day.mintemp_f;
+    weatherData.dailyForecast.forecast1condition =
+      data.forecast.forecastday[1].day.condition.icon;
+    weatherData.dailyForecast.forecast1maxC =
+      data.forecast.forecastday[1].day.maxtemp_c;
+    weatherData.dailyForecast.forecast1maxF =
+      data.forecast.forecastday[1].day.maxtemp_f;
+    weatherData.dailyForecast.forecast1minC =
+      data.forecast.forecastday[1].day.mintemp_c;
+    weatherData.dailyForecast.forecast1minF =
+      data.forecast.forecastday[1].day.mintemp_f;
+    weatherData.dailyForecast.forecast2date = data.forecast.forecastday[2].date;
+    weatherData.dailyForecast.forecast2condition =
+      data.forecast.forecastday[2].day.condition.icon;
+    weatherData.dailyForecast.forecast2maxC =
+      data.forecast.forecastday[2].day.maxtemp_c;
+    weatherData.dailyForecast.forecast2maxF =
+      data.forecast.forecastday[2].day.maxtemp_f;
+    weatherData.dailyForecast.forecast2minC =
+      data.forecast.forecastday[2].day.mintemp_c;
+    weatherData.dailyForecast.forecast2minF =
+      data.forecast.forecastday[2].day.mintemp_f;
+    weatherData.hourlyForecastC = [];
+    weatherData.hourlyForecastC[0] =
+      data.forecast.forecastday[0].hour[0].temp_c;
+    weatherData.hourlyForecastC[1] =
+      data.forecast.forecastday[0].hour[2].temp_c;
+    weatherData.hourlyForecastC[2] =
+      data.forecast.forecastday[0].hour[4].temp_c;
+    weatherData.hourlyForecastC[3] =
+      data.forecast.forecastday[0].hour[6].temp_c;
+    weatherData.hourlyForecastC[4] =
+      data.forecast.forecastday[0].hour[8].temp_c;
+    weatherData.hourlyForecastC[5] =
+      data.forecast.forecastday[0].hour[10].temp_c;
+    weatherData.hourlyForecastC[6] =
+      data.forecast.forecastday[0].hour[12].temp_c;
+    weatherData.hourlyForecastC[7] =
+      data.forecast.forecastday[0].hour[14].temp_c;
+    weatherData.hourlyForecastC[8] =
+      data.forecast.forecastday[0].hour[16].temp_c;
+    weatherData.hourlyForecastC[9] =
+      data.forecast.forecastday[0].hour[18].temp_c;
+    weatherData.hourlyForecastC[10] =
+      data.forecast.forecastday[0].hour[20].temp_c;
+    weatherData.hourlyForecastC[11] =
+      data.forecast.forecastday[0].hour[22].temp_c;
+    weatherData.hourlyForecastF = [];
+    weatherData.hourlyForecastF[0] =
+      data.forecast.forecastday[0].hour[0].temp_f;
+    weatherData.hourlyForecastF[1] =
+      data.forecast.forecastday[0].hour[2].temp_f;
+    weatherData.hourlyForecastF[2] =
+      data.forecast.forecastday[0].hour[4].temp_f;
+    weatherData.hourlyForecastF[3] =
+      data.forecast.forecastday[0].hour[6].temp_f;
+    weatherData.hourlyForecastF[4] =
+      data.forecast.forecastday[0].hour[8].temp_f;
+    weatherData.hourlyForecastF[5] =
+      data.forecast.forecastday[0].hour[10].temp_f;
+    weatherData.hourlyForecastF[6] =
+      data.forecast.forecastday[0].hour[12].temp_f;
+    weatherData.hourlyForecastF[7] =
+      data.forecast.forecastday[0].hour[14].temp_f;
+    weatherData.hourlyForecastF[8] =
+      data.forecast.forecastday[0].hour[16].temp_f;
+    weatherData.hourlyForecastF[9] =
+      data.forecast.forecastday[0].hour[18].temp_f;
+    weatherData.hourlyForecastF[10] =
+      data.forecast.forecastday[0].hour[20].temp_f;
+    weatherData.hourlyForecastF[11] =
+      data.forecast.forecastday[0].hour[22].temp_f;
+    weatherData.hourlyForecastImg = [];
+    weatherData.hourlyForecastImg[0] =
+      data.forecast.forecastday[0].hour[0].condition.icon;
+    weatherData.hourlyForecastImg[1] =
+      data.forecast.forecastday[0].hour[2].condition.icon;
+    weatherData.hourlyForecastImg[2] =
+      data.forecast.forecastday[0].hour[4].condition.icon;
+    weatherData.hourlyForecastImg[3] =
+      data.forecast.forecastday[0].hour[6].condition.icon;
+    weatherData.hourlyForecastImg[4] =
+      data.forecast.forecastday[0].hour[8].condition.icon;
+    weatherData.hourlyForecastImg[5] =
+      data.forecast.forecastday[0].hour[10].condition.icon;
+    weatherData.hourlyForecastImg[6] =
+      data.forecast.forecastday[0].hour[12].condition.icon;
+    weatherData.hourlyForecastImg[7] =
+      data.forecast.forecastday[0].hour[14].condition.icon;
+    weatherData.hourlyForecastImg[8] =
+      data.forecast.forecastday[0].hour[16].condition.icon;
+    weatherData.hourlyForecastImg[9] =
+      data.forecast.forecastday[0].hour[18].condition.icon;
+    weatherData.hourlyForecastImg[10] =
+      data.forecast.forecastday[0].hour[20].condition.icon;
+    weatherData.hourlyForecastImg[11] =
+      data.forecast.forecastday[0].hour[22].condition.icon;
+
+    console.log(weatherData);
+
+    if (units === 'Celsius') {
+      renderCelsius(weatherData);
+    } else if (units === 'Fahrenheit') {
+      renderFahrenheit(weatherData);
+    }
+  } catch (error) {
+    console.log('Error: ' + error);
+  }
+}
